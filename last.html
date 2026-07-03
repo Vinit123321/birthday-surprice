@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Beautiful Memories ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg,
+                    #ffd1dc 0%,
+                    #e6e6fa 25%,
+                    #ffefd5 50%,
+                    #e6e6fa 75%,
+                    #ffd1dc 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            color: #4a4a4a;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Enhanced Sparkle Effect */
+        .magic-sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: white;
+            animation: twinkle var(--duration, 4s) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+        /* Generate 50 sparkles with different positions and animations */
+        .magic-sparkles::before,
+        .magic-sparkles::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, white 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: sparkleLayer 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        .magic-sparkles::after {
+            animation-delay: -4s;
+            transform: rotate(45deg);
+        }
+
+        @keyframes sparkleLayer {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 105, 180, 0.6);
+            animation: floatHeart var(--float-duration, 6s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(var(--translate-x, 0), -100vh) rotate(360deg);
+            }
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .welcome h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInScale 2s ease;
+        }
+
+        .welcome p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            line-height: 1.6;
+            animation: fadeIn 2s ease 0.5s both;
+        }
+
+        /* Enhanced Memory Cards */
+        .memory-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            z-index: 3;
+            position: relative;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .memory-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .memory-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .memory-card:hover .memory-img {
+            transform: scale(1.05);
+        }
+
+        .memory-date {
+            font-family: 'Dancing Script', cursive;
+            color: #ff69b4;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .memory-caption {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        /* Final Message Section */
+        .final-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .final-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff69b4;
+            margin-bottom: 2rem;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .final-message p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .goodbye-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .goodbye-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Generate Hearts */
+        .js-generate-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            border-radius: 6px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome h1 {
+                font-size: 3rem;
+            }
+
+            .memory-container {
+                grid-template-columns: 1fr;
+            }
+
+            .final-message h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="magic-sparkles"></div>
+    <div class="floating-hearts">
+        <!-- Hearts will be generated via CSS -->
+        <div class="heart" style="--float-duration: 6s; --delay: 0s; --translate-x: 20px;">💝</div>
+        <div class="heart" style="--float-duration: 8s; --delay: 1s; --translate-x: -30px;">💖</div>
+        <div class="heart" style="--float-duration: 7s; --delay: 2s; --translate-x: 40px;">💗</div>
+        <div class="heart" style="--float-duration: 9s; --delay: 3s; --translate-x: -20px;">💓</div>
+        <div class="heart" style="--float-duration: 5s; --delay: 4s; --translate-x: 30px;">💕</div>
+    </div>
+
+    <section class="welcome">
+        <h1>Our Beautiful Moments Together</h1>
+        <p>Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
+    </section>
+
+    <div class="memory-container">
+        <div class="memory-card">
+            <img src="the best soul .jpeg" alt="First Date" class="memory-img">#best soul 
+            <div class="memory-date">Her Smile Says It All</div>
+            <div class="memory-caption">you r the preetiest girl i've ever seen and have ever existed u r da real baddiee🫣🫣but soft waliii, awieee yayayayayyyy.❤️</div>
+        </div>
+        <div class="memory-card">
+            <img src="the first time i saw her.jpeg" alt="Beach Day" class="memory-img"><!--the first time i saw her-->
+            <div class="memory-date">The day i saw those eyes</div>
+            <div class="memory-caption">TBh w u gaurangi jb maine dekhi teri pfp and haan mai krta tha tujhee stalkkk okayyy naaaa, toh i never thought ki itni sundr ldki meri gf bnegiiii buttt aap b mujhe dekhkr pagal hi hogyee yawrrrrrr, hehehehe, but was true a dream come true that we both liked each other the moment we saw each other.😊💕</div>
+        </div>
+        <div class="memory-card">
+            <img src="octaves.jpeg" alt="Movie Night" class="memory-img"><!--octaves-->
+            <div class="memory-date">ocatves</div>
+            <div class="memory-caption">uuffff yaawwrr octaves wale din u r looking so damn hot gaurangi tbh mai itna nervous tha us time and dekh kitna lucky b ki hmko sath mne seat b mil gyiii thii, but mai toh boht hi zyada nervous ho gya tha and tu uss din yawrrrrrrr kitni hoitt lgrhiii thi and mujhe yadd hai like  us din aapne white heels peheni thi toh mai aapka hath pkd keee aapkpo help kr rha thhaaa yarrrrrr kitna romanticc that voh sbhhh aywrrrrrrrr mtlbbbb umuahhhhh babbyuuuuuu🌸💖</div>
+        </div>
+         <div class="memory-card">
+            <img src="soft launch .jpeg" alt="Movie Night" class="memory-img"><!--garba night-->
+            <div class="memory-date">garba night</div>
+            <div class="memory-caption">ufff yrrrrrr itnaa sundr day chloo voh to meri life me aapko dekhkr hrr din ho jata prr babiuuuuuu hm donooo kitneee beautiful lgrhee the uss din adn uss din se hmnee soft launch kr diyaa tha kitna zyadaa special day tha vohhh yawrrrrr yeloooo babuiuuuuuu kisuuuuuu🌸💖</div>
+        </div>
+        <div class="memory-card">
+            <img src="treasure hunt.jpeg" alt="Movie Night" class="memory-img"><!---->
+            <div class="memory-date">Treature hunt</div>
+            <div class="memory-caption">Dekho aaap life kitni hi achi ho skti kisi kii [ure clg walo ne mere liye treature hunt krwaya so that mai apne treature ko hunt kr skuu btaoo yawrrr director sirr aaap b naaa🤗🤗, dekhaaa aapne us din se aap officially hamesha ke liye mere ho gye the, and aaap bolti rehti naaa aapne toh pressure me haan bold iyaa thaaa, haan haaan mai hiu aapke piche pdha huaa thaa naaaw, aap toh ho hi itne sundrr aapke piche toh pdhna hi thaaa😘😘😘🌸💖</div>
+        </div>
+        <div class="memory-card">
+            <img src="our first diwali .jpeg" alt="Movie Night" class="memory-img"><!--diwali-->
+            <div class="memory-date">babyyyyy hamariii first diwali sath me kitniii zyadaa speciall thiiii kisii mdm ji,,, areyyy nhi nhiiii aap kisii nhiii mtlb meri mdm ji jinko mujhe mile hue 2-3 months b nhhi hue the unka order tha no crackers wowww, and hm pagalon jaisee man b liye aapki baat but it was very cute and diwali boht hi sundr thi last time cuz aa jo mere sath thi mer cutiee, aapki dress itni beautiful lg rhi thi mera toh mn tha mummy ko diwali ka gift unke lie ek bahu hi deduuu🥰😘🤗</div>
+            <div class="memory-caption">🌸💖</div>
+        </div>
+<div class="memory-card">
+            <img src="freshers.jpeg" alt="Movie Night" class="memory-img"><!--freshers-->
+            <div class="memory-date">Freshers</div>
+            <div class="memory-caption">a red dress needs a full black coat, yawrrr  like itne red hot couple lgre the hm dono legi the best ever thing hamara colour combo kitni pyaar and movies me jo hotaa vhi thaaa yawrrrr, mera buquest asli wala jo pure world ke sare flowers se b sundrrr haii and voh ho aap, kitnihot lg rhi thii an mujhe dekhoo yawrrr itna aawkward ho rha tha mai toh aapko toucvh b krne mee but kitna specail day thaa voh b hamara, really one the best moments of my life and all of this just because of you my bachhaa my betuuu jo aaaj 19 ki ho jayengiiiii ayyayayyayayayya🌸💖</div>
+        </div>
+<div class="memory-card">
+            <img src="first unplanned trip .jpeg" alt="Movie Night" class="memory-img"><!--jalandhar trip -->
+            <div class="memory-date">Tum se hi </div>
+            <div class="memory-caption">yrrr jo perfect weather ho skta kitna romantic us and bhaag rge baarish me yha se vhaa we both holding our handss likeee truelyy tum se hi vibess and i am very grateful to god ki mai ye sbh aapke sath experience kr paya and aapka b toh dream thaaaaa, kitnaaa pyaar time tha yaawrrr, i wish koi hme record kr rha hotaa, hmne kitna enjoy kiaa tha uss trip pee truely the best unplanned trip ever 🌸💖</div>
+        </div>
+<div class="memory-card">
+            <img src="mandir date.jpeg" alt="Movie Night" class="memory-img"><!--mandir date-->
+            <div class="memory-date">Mandir date</div>
+            <div class="memory-caption">Guarangi yawrrr kitnaa enjoyy kia tha humneee uss din yawrrrr ,hm pura din sath the ekdum traditional wear me hm mandir gye theeee, kitna zyada hmnee ejoy kia thaaa, just because off u my bachaaa, tu meri life me god bnke aayiii and meri puri life hi change kr diii srsly gaurangii i'm so so so grateful to have u in my lifeee yawrrrrr, but no roi roiii, aajj toh aaapka birthdayyy hauiiii ayyayayayayayya, yayayayayayayayy babiuuuuuu🌸💖</div>
+        </div>
+<div class="memory-card">
+            <img src="first holi .jpeg" alt="Movie Night" class="memory-img"><!---->
+            <div class="memory-date">First holi</div>
+            <div class="memory-caption">Yawrrr ek tohhr special day se pehle hm dono kitna ldhh leteee😭, hloi pr b  ldhew hii theee, but mdm ji ki dimand thiii waffle kahana hai panni puri khaniii haiiiii voh b toh puri krnii thii naww and holi b manani thi ghr walooo ko joonth bolkeee😭😭, but truelyyy hmnee kitni beautiff\ule memories bnayii sath me uss din hm kitnaa holii khele thee kitna speciall feeel hua tha us din aapke sath mujheee, i just want to be with you  for my entire life so that ese cute cute giftt likhne ke liye or momentsss bne hmare sath me yayayayyyayayyayyayayyy, happy birthdayyyyyy babiuuuuu i lovee u sommmmuchhhhhhhhhh🌸💖</div>
+        </div>
+<div class="memory-card">
+            <img src="dream .jpeg" alt="Movie Night" class="memory-img"><!---->
+            <div class="memory-date">Dream night </div>
+            <div class="memory-caption">Can u imagine hm dono ke fav romantic sonng ke singer nd that too voh pahadi hoo, hamare hi clg me aake tum se hi perform kre and hm dono uspee dance kreinn, yawrrrr likee again mainee ik ye sari baatein aapko book me b likh kr di but yawrrrr mujhe toh abhi b dream hi lgta ye sbh ki kaisee yawrrrr, itni romanticc nighttt kaise hi kisi couple ke liye hoi sktiii aywrrrrrrrrr, just because of u gaurangi agr tu mere satt\h nhi hoti toh ye sbh mujhe boht normal lgta butt tere sath hone se mera hr ek sec kitna special ho jata mai explain nhi kr sktaa yawrr mtlb thank you thank you and thajnk you gaurangi for literally everything, and a very veryy happpyy birthday to my cutiee piee to my cutieee bachaaa tu my everything🌸💖</div>
+        </div>
+<div class="memory-card">
+            <img src="the day we both seperated to come closer.jpeg" alt="Movie Night" class="memory-img"><!---->
+            <div class="memory-date">roi roi </div>
+            <div class="memory-caption">yaawr ek toh ye kitni funnyy baat hai kli jb b mai kuch likjnee ajataa sbhse pehle na mujhe us din hamari kya ldhai hui thi voh yaad aa jata mtlbbhm kyaaa hr din hi ldhte the ktyaaaaa😭😭, areyyy nhi nhiii yawwrrr me aaopki baat thorhi kr rha ldhta toh mai thaaa, huuhhh, yawrrrr jb tu jaa rhi thi mai tujhee ache se dekh b nhi paya thaaaa, i roi roiiiii us timeee, mujhee teri boht hi zyada yaad aati gaurangi schiii andd mujhe itna hurt ho rhaa ki mai tere liye kuchg b nhi krr payyaaa, aaopke parents jo hainnnn, 😭😭😭, mujhee bohyt mn tha birthday pr atleast me dur se hi dekh luu b\ya kuch surprice du but betuuuu, sorry, mai boht krbh hu, butt pkauuuuu babbyy aap clg aau phit batata mai aapkooooo okayuuuu nawwww, chlo chloo aapko aur b wishes pdhni hongi kb tk meri hi pdhti rhogiii syddd aapp thaw b gye hoge nawwwww, hainaaaaaaaa🌸💖</div>
+        </div>
+
+
+    </div>
+
+    <section class="final-message">
+        <h2>Thank You for the Memories, thank you  for being in my life</h2>
+        <p>Every laugh, every chat, and every moment we’ve shared has been truly special.💫<br>
+             A very very very happy birthday to my child to my babbyy to my sweet hearttt bachaa, i wish aaopki sari wishess jldi jldi puri ho and aap aur young hote rhoooo.<br>
+            On your birthday, I just wish for endless happiness, love, and success to come your way.🌸</p>
+        <p>Always keep smiling my betuu aap ho to hmai hu, u deserve every single happynessss, and i hopeeee mai voih sb puri klr c\sku aapkee liyee, again beta A VERY HAPPY BIRTHDAYYYYYY, HAPPY 19th BIRTHDAY TO MY LITLLE BABYYYY.✨</p>
+        <a href="#" class="goodbye-btn">Until We Meet Again🥺🥺🥺🩷💝</a>
+    </section>
+</body>
+
+</html>
